@@ -157,7 +157,7 @@
             setInterval(updateOnlineCount, 2000); // Update count every 2 seconds
 
             function updateOnlineCount() {
-                $.getJSON('http://strangerflex.pythonanywhere.com/online_count', function(data) {
+                $.getJSON('https://strangerflex.pythonanywhere.com/online_count', function(data) {
                     $('#online-count').text((data.count+3) + " strangers are currently online.");
                 });
             }

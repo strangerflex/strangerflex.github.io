@@ -87,11 +87,28 @@
             margin-bottom: 10px;
         }
 
+        .online-count {
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 14px;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            75%, 100% {
+                opacity: 0.4;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="main">
         <h1>Welcome to StrangerFlex!</h1>
+        <div class="online-count" id="online-count"></div>
         <p>StrangerFlex is a chat platform where you can connect with strangers from around the world. Whether you're looking to make new friends, have interesting conversations, or just pass the time, StrangerFlex is the place to be. <i>We do not recommend disclosing your personal details or contact information here!</i></p>
         <p>By using StrangerFlex, you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.</p>
         
@@ -132,6 +149,18 @@
                 localStorage.setItem('interests', interests);
                 window.location.href = '/chat';
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            updateOnlineCount();
+            setInterval(updateOnlineCount, 2000); // Update count every 2 seconds
+
+            function updateOnlineCount() {
+                $.getJSON('http://strangerflex.pythonanywhere.com/online_count', function(data) {
+                    $('#online-count').text((data.count+3) + " strangers are currently online.");
+                });
+            }
         });
     </script>
 </body>

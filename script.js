@@ -12,7 +12,7 @@ $('#message-input').keydown(function(event) {
 
     $.ajax({
         type: 'POST',
-        url: '/connect',
+        url: 'https://strangerflex.pythonanywhere.com/connect',
         contentType: 'application/json',
         data: JSON.stringify({ interests: interests }),
         success: function(response) {
